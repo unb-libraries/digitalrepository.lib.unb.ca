@@ -22,13 +22,8 @@ services:
       - 3080:3000
       - 9876:9876
       - 1048:1048
-    # volumes:
-      # - ./bin:/app/samvera
-      # - .:/rails
-      # - bundle:/app/bundle
-      # - hyrax-storage:/app/samvera/hyrax-webapp/storage
-      # - hyrax-derivatives:/app/samvera/hyrax-webapp/derivatives
-      # - hyrax-uploads:/app/samvera/hyrax-webapp/uploads
+    volumes:
+      - .:/rails
       # - rails-public:/app/samvera/hyrax-webapp/public
       # - rails-tmp:/app/samvera/hyrax-webapp/tmp
     networks:
