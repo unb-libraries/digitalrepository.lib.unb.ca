@@ -3,11 +3,8 @@ services:
   digitalrepository-lib-unb-ca:
     container_name: digitalrepository-lib-unb-ca
     build:
-      # args:
-      #   - RAILS_ENV=development
-      #   - RACK_ENV=development
-      #   - BUNDLE_WITHOUT=
       context: .
+      target: development
     env_file:
       - env/hyrax.env
     depends_on:

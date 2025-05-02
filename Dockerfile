@@ -46,6 +46,30 @@ RUN bundle exec bootsnap precompile app/ lib/
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
+# # Add a development stage for development use
+FROM base AS development
+
+# Install development dependencies
+RUN apt-get update -qq && \
+  apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config nodejs npm && \
+  rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Set development environment
+ENV RAILS_ENV="development" \
+  BUNDLE_WITHOUT=""
+
+# Copy application code
+COPY . .
+
+# Install gems for development
+RUN bundle install
+
+# Entrypoint prepares the database.
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+# Start the Rails server in development mode
+EXPOSE 3000
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
 
 
 # Final stage for app image
