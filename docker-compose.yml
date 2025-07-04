@@ -21,8 +21,7 @@ services:
       - 1048:1048
     volumes:
       - .:/rails
-      # - rails-public:/app/samvera/hyrax-webapp/public
-      # - rails-tmp:/app/samvera/hyrax-webapp/tmp
+      - /rails/node_modules
     networks:
       - digitalrepository.lib.unb.ca
 
@@ -51,7 +50,12 @@ services:
     image: solr:8.11
     ports:
       - 8983:8983
-    command: ["sh", "-c", "precreate-core digitalrepo-test /opt/solr/server/configsets/hyraxconf; solr-precreate digitalrepo /opt/solr/server/configsets/hyraxconf"]
+    command:
+      [
+        "sh",
+        "-c",
+        "precreate-core digitalrepo-test /opt/solr/server/configsets/hyraxconf; solr-precreate digitalrepo /opt/solr/server/configsets/hyraxconf",
+      ]
     volumes:
       # - solr_home:/var/solr/data:cached
       - ./solr/conf:/opt/solr/server/configsets/hyraxconf
@@ -75,7 +79,7 @@ services:
       - 9080:8080
     networks:
       - digitalrepository.lib.unb.ca
-  
+
 networks:
   digitalrepository.lib.unb.ca:
     name: digitalrepository.lib.unb.ca
