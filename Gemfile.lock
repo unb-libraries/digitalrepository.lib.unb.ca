@@ -565,7 +565,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    language_server-protocol (3.17.0.4)
+    language_server-protocol (3.17.0.5)
     ld-patch (3.3.0)
       ebnf (~> 2.4)
       rdf (~> 3.3)
@@ -717,7 +717,7 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.4.0)
+    prism (1.6.0)
     psych (3.3.4)
     public_suffix (6.0.2)
     puma (6.6.0)
@@ -787,7 +787,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rbs (3.9.4)
+    rbs (3.9.5)
       logger
     rdf (3.3.2)
       bcp47_spec (~> 0.2)
@@ -950,11 +950,10 @@ GEM
       json
       multipart-post
       oauth2
-    ruby-lsp (0.24.2)
+    ruby-lsp (0.26.2)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 5)
-      sorbet-runtime (>= 0.5.10782)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.4.1)
@@ -1015,7 +1014,6 @@ GEM
       ostruct
       retriable
       ruby-progressbar
-    sorbet-runtime (0.5.12219)
     sparql (3.3.0)
       builder (~> 3.2, >= 3.2.4)
       ebnf (~> 2.4)
