@@ -21,7 +21,6 @@ services:
       - 1048:1048
     volumes:
       - .:/rails
-      - /rails/node_modules
     networks:
       - digitalrepository.lib.unb.ca
 
