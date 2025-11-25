@@ -1,0 +1,20 @@
+{
+  "name": "unb-libraries/digitalrepository.lib.unb.ca",
+  "description": "Scaffold and provision local development for digitalrepository.lib.unb.ca",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "unb-libraries/dockworker-daemon": "^6"
+  },
+  "config": {
+    "allow-plugins": {
+      "*": true
+    }
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "vendor/bin/dockworker git:setup-hooks"
+    ]
+  }
+}

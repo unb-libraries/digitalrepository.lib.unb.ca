@@ -1,0 +1,56 @@
+dockworker:
+  version: '6'
+  application:
+    name: Digital Repository
+    uri: https://digitalrepository.lib.unb.ca
+    identifiers:
+      id: digitalrepository.lib.unb.ca
+      slug: digitalrepository-lib-unb-ca
+      short_slug: digitalrepository
+      uuid: 3080
+    framework:
+      name: Hyrax
+      version: 5
+      startup_finished_marker: '99_startup_sequence_complete'
+      endpoint:
+        name: http
+        port: 80
+        readiness_timeout: 30
+    license:
+      license: MIT
+      holder: University of New Brunswick Libraries
+    shell:
+      path: /bin/sh
+  endpoints:
+    env:
+      - dev
+      - prod
+    deployments:
+      digitalrepository-lib-unb-ca:
+        default: true
+        managed: true
+        name: digitalrepository-lib-unb-ca
+      digitalrepository-mongodb-lib-unb-ca:
+        managed: false
+        name: mongodb
+  workflows:
+    vcs:
+      type: github
+      owner: unb-libraries
+      name: digitalrepository.lib.unb.ca
+    jira:
+      project_keys:
+        - DIGITALREPO
+        - DOC
+    ci:
+      actions:
+        - source: dockworker-drupal
+          type: deployment-workflow
+    image:
+      parent: docker.io/library/ruby
+      repositories:
+        - name: GitHub
+          push_branches:
+            - dev
+            - prod
+          image_name: ghcr.io/unb-libraries/digitalrepository.lib.unb.ca
