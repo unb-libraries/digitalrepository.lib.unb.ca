@@ -28,7 +28,7 @@ services:
       - digitalrepository.lib.unb.ca
 
   digitalrepository-postgres-lib-unb-ca:
-    image: ghcr.io/unb-libraries/digitalrepository.postgres.lib.unb.ca:15.x
+    image: postgres:15-alpine
     container_name: digitalrepository-postgres-lib-unb-ca
     env_file:
       - env/postgres.env
@@ -40,7 +40,7 @@ services:
       - digitalrepository.lib.unb.ca
 
   digitalrepository-redis-lib-unb-ca:
-    image: ghcr.io/unb-libraries/digitalrepository.redis.lib.unb.ca:7.x
+    image: redis:7-alpine
     container_name: digitalrepository-redis-lib-unb-ca
     restart: unless-stopped
     ports:
