@@ -49,8 +49,10 @@ services:
       - digitalrepository.lib.unb.ca
 
   digitalrepository-solr-lib-unb-ca:
-    image: ghcr.io/unb-libraries/digitalrepository.solr.lib.unb.ca:8.x
+    image: solr:9
     container_name: digitalrepository-solr-lib-unb-ca
+    env_file:
+      - env/solr.env
     ports:
       - 8983:8983
     command:
@@ -60,8 +62,7 @@ services:
         "precreate-core digitalrepo-test /opt/solr/server/configsets/hyraxconf; solr-precreate digitalrepo /opt/solr/server/configsets/hyraxconf",
       ]
     volumes:
-      # - solr_home:/var/solr/data:cached
-      - ./solr/conf:/opt/solr/server/configsets/hyraxconf
+      - ./solr:/opt/solr/server/configsets/hyraxconf
     ulimits:
       nofile:
         soft: 65536
