@@ -37,7 +37,9 @@
 
 # Ignore Ruby LSP working directory
 /.ruby-lsp/
-node_modules
 
 # Ignore PHP vendor directory
 /vendor/
+
+# Ignore NPM directory
+node_modules

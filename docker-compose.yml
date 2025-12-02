@@ -20,7 +20,10 @@ services:
       - 9876:9876
       - 1048:1048
     volumes:
-      - .:/rails
+      - ./app:/rails/app
+      - ./config:/rails/config
+      - ./db:/rails/db
+      - ./test:/rails/test
     networks:
       - digitalrepository.lib.unb.ca
 
