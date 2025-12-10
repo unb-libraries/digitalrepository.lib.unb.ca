@@ -1,3 +1,5 @@
+# Local development and testing only.
+# https://github.com/samvera/hyrax/wiki/Setting-up-test-app-for-workflow
 development:
   archivist:
     - archivist1@example.com
@@ -20,4 +22,6 @@ test:
     - leland_himself@example.com
 
 production:
-  # Add roles for users here.
+  # Add a production admin user:
+  # https://github.com/samvera/hyrax/wiki/Making-Admin-Users-in-Hyrax
+  admin: []
