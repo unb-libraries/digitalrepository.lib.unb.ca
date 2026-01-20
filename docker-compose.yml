@@ -10,7 +10,7 @@ services:
     depends_on:
       # - worker
       # - chrome
-      # - digitalrepository-fits-lib-unb-ca
+      - digitalrepository-fits-lib-unb-ca
       # - digitalrepository-memcached-lib-unb-ca
       - digitalrepository-postgres-lib-unb-ca
       - digitalrepository-redis-lib-unb-ca
@@ -77,12 +77,13 @@ services:
   #   networks:
   #     - digitalrepository.lib.unb.ca
 
-  # digitalrepository-fits-lib-unb-ca:
-  #   image: ghcr.io/samvera/fitsservlet:1.6.0
-  #   ports:
-  #     - 9080:8080
-  #   networks:
-  #     - digitalrepository.lib.unb.ca
+  digitalrepository-fits-lib-unb-ca:
+    image: ghcr.io/samvera/fitsservlet:1.6.0
+    container_name: digitalrepository-fits-lib-unb-ca
+    ports:
+      - 8080:8080
+    networks:
+      - digitalrepository.lib.unb.ca
 
 networks:
   digitalrepository.lib.unb.ca:
