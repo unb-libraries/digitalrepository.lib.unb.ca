@@ -59,10 +59,11 @@ services:
       [
         "sh",
         "-c",
-        "precreate-core digitalrepo-test /opt/solr/server/configsets/hyraxconf; solr-precreate digitalrepo /opt/solr/server/configsets/hyraxconf",
+        "precreate-core digitalrepo-test /var/solr/data/digitalrepo-test/conf; solr-precreate digitalrepo /var/solr/data/digitalrepo/conf",
       ]
     volumes:
-      - ./solr:/opt/solr/server/configsets/hyraxconf
+      - ./solr/conf:/var/solr/data/digitalrepo/conf
+      - ./solr/conf:/var/solr/data/digitalrepo-test/conf
     ulimits:
       nofile:
         soft: 65536
