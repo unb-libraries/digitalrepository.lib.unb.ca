@@ -59,7 +59,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem "hyrax", "5.2.0"
+gem "hyrax", git: "https://github.com/unb-libraries/hyrax", tag: "hyrax-v5.2.1"
 
 group :development, :test do
   gem "solr_wrapper", ">= 0.3"
