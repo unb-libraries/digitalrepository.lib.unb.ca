@@ -13,8 +13,10 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-  apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client libvpx-dev ffmpeg && \
-  rm -rf /var/lib/apt/lists /var/cache/apt/archives
+  apt-get install --no-install-recommends -y curl libjemalloc2 libvips imagemagick ghostscript postgresql-client libvpx-dev ffmpeg && \
+  rm -rf /var/lib/apt/lists /var/cache/apt/archives && \
+  # Update ImageMagick policy to allow PDF read/write
+  sed -i 's/rights="none" pattern="PDF"/rights="read|write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
 
 # Set production environment
 ENV RAILS_ENV="production" \
@@ -27,7 +29,7 @@ FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-  apt-get install --no-install-recommends -y build-essential git libpq-dev imagemagick libjpeg-dev libpng-dev libtiff-dev pkg-config nodejs npm && \
+  apt-get install --no-install-recommends -y build-essential git libpq-dev libjpeg-dev libpng-dev libtiff-dev pkg-config nodejs npm && \
   rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
@@ -52,7 +54,7 @@ FROM base AS development
 
 # Install development dependencies
 RUN apt-get update -qq && \
-  apt-get install --no-install-recommends -y build-essential git libpq-dev imagemagick libjpeg-dev libpng-dev libtiff-dev pkg-config nodejs npm && \
+  apt-get install --no-install-recommends -y build-essential git libpq-dev libjpeg-dev libpng-dev libtiff-dev pkg-config nodejs npm && \
   rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set development environment
