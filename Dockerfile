@@ -13,7 +13,7 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-  apt-get install --no-install-recommends -y curl libjemalloc2 libvips imagemagick ghostscript postgresql-client libvpx-dev ffmpeg && \
+  apt-get install --no-install-recommends -y curl libjemalloc2 libvips imagemagick ghostscript postgresql-client libvpx-dev ffmpeg libreoffice && \
   rm -rf /var/lib/apt/lists /var/cache/apt/archives && \
   # Update ImageMagick policy to allow PDF read/write
   sed -i 's/rights="none" pattern="PDF"/rights="read|write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
