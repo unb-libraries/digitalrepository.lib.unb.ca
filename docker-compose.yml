@@ -24,6 +24,7 @@ services:
       - ./config:/rails/config
       - ./db:/rails/db
       - ./test:/rails/test
+      - files:/rails/storage
     networks:
       - digitalrepository.lib.unb.ca
 
@@ -92,3 +93,4 @@ networks:
 
 volumes:
   db:
+  files:
