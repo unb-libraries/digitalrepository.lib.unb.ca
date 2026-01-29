@@ -40,11 +40,11 @@ Hyrax.config do |config|
   # config.max_days_between_fixity_checks = 7
 
   # Options to control the file uploader
-  # config.uploader = {
-  #   limitConcurrentUploads: 6,
-  #   maxNumberOfFiles: 100,
-  #   maxFileSize: 500.megabytes
-  # }
+  config.uploader = {
+    limitConcurrentUploads: 10,
+    maxNumberOfFiles: 100,
+    maxFileSize: 2.gigabytes
+  }
 
   # Enables a link to the citations page for a work
   # Default is false

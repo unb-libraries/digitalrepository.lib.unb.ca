@@ -36,7 +36,9 @@ RUN apt-get update -qq && \
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
   rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
-  bundle exec bootsnap precompile --gemfile
+  bundle exec bootsnap precompile --gemfile && \
+  find /usr/local -type f -wholename '*/hyrax-*/vendor/assets/javascripts/fileupload/jquery.fileupload-validate.js' | xargs sed -i "s/maxFileSize: '@',/maxFileSize: '2147483648',/"
+
 
 # Copy application code
 COPY . .
@@ -66,7 +68,8 @@ COPY . .
 
 # Install gems for development
 RUN npm install && \
-  bundle install
+  bundle install && \
+  find /usr/local -type f -wholename '*/hyrax-*/vendor/assets/javascripts/fileupload/jquery.fileupload-validate.js' | xargs sed -i "s/maxFileSize: '@',/maxFileSize: '2147483648',/"
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
