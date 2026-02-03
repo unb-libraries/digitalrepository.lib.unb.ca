@@ -82,3 +82,5 @@ gem "riiif", "~> 2.1"
 group :development, :test do
   gem "dotenv-rails", "~> 2.8"
 end
+
+gem "sidekiq", "~> 7.3"
