@@ -10,7 +10,6 @@ module DigitalrepositoryLibUnbCa
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
-    config.active_job.queue_adapter = ENV.fetch('HYRAX_ACTIVE_JOB_QUEUE') { 'async' }.to_sym
 
     config.add_autoload_paths_to_load_path = true
 

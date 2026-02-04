@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   devise_for :users
   mount Hydra::RoleManagement::Engine => '/'
 
+  require "sidekiq/web"
+  mount Sidekiq::Web => "/sidekiq"
+
 
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
