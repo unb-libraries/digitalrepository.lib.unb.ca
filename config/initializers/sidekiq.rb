@@ -5,6 +5,7 @@ config = YAML.load(ERB.new(IO.read(Rails.root + "config" + "redis.yml")).result)
 redis_conn = { url: config[:url] }
 
 Sidekiq.configure_server do |s|
+  s.logger = Logger.new($stdout)
   s.redis = redis_conn
 end
 
