@@ -56,7 +56,7 @@ FROM base AS development
 
 # Install development dependencies
 RUN apt-get update -qq && \
-  apt-get install --no-install-recommends -y build-essential git libpq-dev libjpeg-dev libpng-dev libtiff-dev pkg-config nodejs npm && \
+  apt-get install --no-install-recommends -y build-essential git libpq-dev libjpeg-dev libpng-dev libtiff-dev pkg-config nodejs npm vim && \
   rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set development environment
