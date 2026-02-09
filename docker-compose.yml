@@ -8,23 +8,44 @@ services:
     env_file:
       - env/hyrax.env
     depends_on:
-      # - worker
-      # - chrome
-      - digitalrepository-fits-lib-unb-ca
-      # - digitalrepository-memcached-lib-unb-ca
       - digitalrepository-postgres-lib-unb-ca
-      - digitalrepository-redis-lib-unb-ca
       - digitalrepository-solr-lib-unb-ca
+      - digitalrepository-fits-lib-unb-ca
+      # - digitalrepository-sidekiq-lib-unb-ca
+      - digitalrepository-redis-lib-unb-ca
+      # - digitalrepository-memcached-lib-unb-ca
     ports:
       - 3080:3000
-      - 9876:9876
-      - 1048:1048
     volumes:
       - ./app:/rails/app
       - ./config:/rails/config
       - ./db:/rails/db
+      - storage:/rails/storage
       - ./test:/rails/test
-      - files:/rails/storage
+      - working:/rails/tmp
+    networks:
+      - digitalrepository.lib.unb.ca
+
+  digitalrepository-sidekiq-lib-unb-ca:
+    container_name: digitalrepository-sidekiq-lib-unb-ca
+    command: ['./bin/bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
+    build:
+      context: .
+      target: development
+    env_file:
+      - env/hyrax.env
+    depends_on:
+      - digitalrepository-fits-lib-unb-ca
+      - digitalrepository-postgres-lib-unb-ca
+      - digitalrepository-redis-lib-unb-ca
+      - digitalrepository-solr-lib-unb-ca
+    volumes:
+      - ./app:/rails/app
+      - ./config:/rails/config
+      - ./db:/rails/db
+      - storage:/rails/storage
+      - ./test:/rails/test
+      - working:/rails/tmp
     networks:
       - digitalrepository.lib.unb.ca
 
@@ -92,4 +113,6 @@ networks:
 
 volumes:
   db:
-  files:
+  storage:
+  working:
+  

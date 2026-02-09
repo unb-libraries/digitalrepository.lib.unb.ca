@@ -51,7 +51,7 @@ Hyrax.config do |config|
   # config.citations = false
 
   # Where to store tempfiles, leave blank for the system temp directory (e.g. /tmp)
-  # config.temp_file_base = '/home/developer1'
+  config.temp_file_base = "/tmp"
 
   # Hostpath to be used in Endnote exports
   # config.persistent_hostpath = 'http://localhost/files/'
@@ -173,10 +173,10 @@ Hyrax.config do |config|
   # The banner image. Should be 5000px wide by 1000px tall
   # config.banner_image = 'https://cloud.githubusercontent.com/assets/92044/18370978/88ecac20-75f6-11e6-8399-6536640ef695.jpg'
 
-  # Temporary paths to hold uploads before they are ingested into FCrepo
-  # These must be lambdas that return a Pathname. Can be configured separately
-  #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
-  #  config.cache_path = ->() { Rails.root + 'tmp' + 'uploads' + 'cache' }
+   # Temporary paths to hold uploads before they are ingested into FCrepo
+   # These must be lambdas that return a Pathname. Can be configured separately
+   config.upload_path = ->() { Rails.root + "tmp" + "uploads" }
+   config.cache_path = ->() { Rails.root + "tmp" + "cache" }
 
   # The registered candidate derivative services.  In the array, the first `valid?` candidate will
   # handle the derivative generation.
@@ -184,7 +184,7 @@ Hyrax.config do |config|
 
   # Location on local file system where derivatives will be stored
   # If you use a multi-server architecture, this MUST be a shared volume
-  # config.derivatives_path = Rails.root.join('tmp', 'derivatives')
+  config.derivatives_path = Rails.root.join("tmp", "derivatives")
 
   # Should schema.org microdata be displayed?
   # config.display_microdata = true
@@ -196,7 +196,7 @@ Hyrax.config do |config|
   # Location on local file system where uploaded files will be staged
   # prior to being ingested into the repository or having derivatives generated.
   # If you use a multi-server architecture, this MUST be a shared volume.
-  # config.working_path = Rails.root.join('tmp', 'uploads')
+  config.working_path = Rails.root.join("tmp", "uploads")
 
   # Should the media display partial render a download link?
   # config.display_media_download_link = true
@@ -221,7 +221,7 @@ Hyrax.config do |config|
   # config.fits_message_length = 5
 
   # ActiveJob queue to handle ingest-like jobs
-  # config.ingest_queue_name = :default
+  config.ingest_queue_name = :ingest
 
   ## Attributes for the lock manager which ensures a single process/thread is mutating a ore:Aggregation at once.
   # How many times to retry to acquire the lock before raising UnableToAcquireLockError
