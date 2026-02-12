@@ -51,7 +51,7 @@ Hyrax.config do |config|
   # config.citations = false
 
   # Where to store tempfiles, leave blank for the system temp directory (e.g. /tmp)
-  config.temp_file_base = "/tmp"
+  # config.temp_file_base = "/tmp"
 
   # Hostpath to be used in Endnote exports
   # config.persistent_hostpath = 'http://localhost/files/'
@@ -175,8 +175,8 @@ Hyrax.config do |config|
 
    # Temporary paths to hold uploads before they are ingested into FCrepo
    # These must be lambdas that return a Pathname. Can be configured separately
-   config.upload_path = ->() { Rails.root + "tmp" + "uploads" }
-   config.cache_path = ->() { Rails.root + "tmp" + "cache" }
+   config.upload_path = ->() { Rails.configuration.x.hyrax.upload_path } unless !Rails.configuration.x.hyrax.upload_path
+   config.cache_path = ->() { Rails.configuration.x.hyrax.cache_path } unless !Rails.configuration.x.hyrax.cache_path
 
   # The registered candidate derivative services.  In the array, the first `valid?` candidate will
   # handle the derivative generation.
@@ -184,7 +184,7 @@ Hyrax.config do |config|
 
   # Location on local file system where derivatives will be stored
   # If you use a multi-server architecture, this MUST be a shared volume
-  config.derivatives_path = Rails.root.join("tmp", "derivatives")
+  config.derivatives_path = Rails.configuration.x.hyrax.derivatives_path unless !Rails.configuration.x.hyrax.derivatives_path
 
   # Should schema.org microdata be displayed?
   # config.display_microdata = true
@@ -196,7 +196,7 @@ Hyrax.config do |config|
   # Location on local file system where uploaded files will be staged
   # prior to being ingested into the repository or having derivatives generated.
   # If you use a multi-server architecture, this MUST be a shared volume.
-  config.working_path = Rails.root.join("tmp", "uploads")
+  config.working_path = Rails.configuration.x.hyrax.working_path unless !Rails.configuration.x.hyrax.working_path
 
   # Should the media display partial render a download link?
   # config.display_media_download_link = true
