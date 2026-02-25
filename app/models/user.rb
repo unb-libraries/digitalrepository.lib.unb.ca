@@ -22,23 +22,19 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    uid = auth.extra.raw_info.attributes["eduPersonPrincipalName"][0]
-    first_name = auth.extra.raw_info.attributes["givenName"][0]
-    last_name = auth.extra.raw_info.attributes["sn"][0]
-    display_name = "#{first_name} #{last_name}"
-    department = auth.extra.raw_info.attributes["l"][0]
-    title = auth.extra.raw_info.attributes["title"][0]
-    telephone = auth.extra.raw_info.attributes["telephoneNumber"][0]
+    provider_info = auth.extra.raw_info.attributes
 
-    find_or_create_by(provider: auth.provider, uid: uid) do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.first_name = first_name
-      user.last_name = last_name
-      user.display_name = display_name
-      user.department = department
-      user.title = title
-      user.telephone = telephone
-    end
+    user = find_or_initialize_by(provider: auth.provider, uid: provider_info["eduPersonPrincipalName"][0])
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0, 20]
+    user.first_name = provider_info["givenName"][0]
+    user.last_name = provider_info["sn"][0]
+    user.display_name = "#{user.first_name} #{user.last_name}"
+    user.department = provider_info["l"][0]
+    user.title = provider_info["title"][0]
+    user.telephone = provider_info["telephoneNumber"][0]
+
+    user.save
+    user
   end
 end
