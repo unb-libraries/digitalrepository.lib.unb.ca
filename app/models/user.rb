@@ -24,16 +24,17 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     provider_info = auth.extra.raw_info.attributes
 
-    user = find_or_initialize_by(provider: auth.provider, uid: provider_info["eduPersonPrincipalName"][0])
-    user.email = auth.info.email
-    user.first_name = provider_info["givenName"][0]
-    user.last_name = provider_info["sn"][0]
-    user.display_name = "#{user.first_name} #{user.last_name}"
-    user.department = provider_info["l"][0]
-    user.title = provider_info["title"][0]
-    user.telephone = provider_info["telephoneNumber"][0]
-
-    user.save
+    user = find_by(provider: auth.provider, uid: provider_info["eduPersonPrincipalName"][0])
+    if user
+      user.email = auth.info.email
+      user.first_name = provider_info["givenName"][0]
+      user.last_name = provider_info["sn"][0]
+      user.display_name = "#{user.first_name} #{user.last_name}"
+      user.department = provider_info["l"][0]
+      user.title = provider_info["title"][0]
+      user.telephone = provider_info["telephoneNumber"][0]
+      user.save
+    end
     user
   end
 end
