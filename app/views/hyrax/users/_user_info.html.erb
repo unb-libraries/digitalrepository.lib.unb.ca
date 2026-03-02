@@ -1,0 +1,19 @@
+<dl id="user_info">
+  <% if user.title %>
+    <dt>Title</dt>
+    <dd><%= user.title %></dd>
+  <% end %>
+  
+  <% if user.department %>
+    <dt>Department</dt>
+    <dd><%= user.department %></dd>
+  <% end %>
+  
+  <dt><span class="fa fa-envelope" aria-hidden="true"></span> Email</dt>
+  <dd><%= mail_to user.email %></dd>
+  
+  <% if user.telephone %>
+    <dt><span class="fa fa-phone" aria-hidden="true"></span> Telephone</dt>
+    <dd><%= link_to_telephone(user) %></dd>
+  <% end %>
+</dl>
