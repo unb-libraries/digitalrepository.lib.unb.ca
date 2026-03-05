@@ -1,4 +1,9 @@
 class Admin::UsersController < Hyrax::Admin::UsersController
+  def index
+    super
+    render :index
+  end
+
   def create
     @user = User.create uid: params[:users][:uid], provider: "saml"
     redirect_to admin_users_url, alert: "User #{@user.uid} successfully added."

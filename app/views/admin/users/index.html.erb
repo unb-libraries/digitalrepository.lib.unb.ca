@@ -1,5 +1,8 @@
 <% provide :page_header do %>
   <h1><span class="fa fa-user" aria-hidden="true"></span> <%= t('hyrax.admin.users.index.title') %></h1>
+  <div class="float-right">
+    <%= link_to t('hyrax.admin.users.index.add_user'), new_admin_user_path, class: "btn btn-primary" %>
+  </div>
 <% end %>
 
 <div class="card users-listing">
@@ -24,7 +27,11 @@
         <tbody>
           <% @presenter.users.each do |user| %>
             <tr>
-              <td><%= link_to user.uid, hyrax.user_path(user) %></td>
+              <% if user.email.present? %>
+                <td><%= link_to user.uid, hyrax.user_path(user) %></td>
+              <% else %>
+                <td><%= user.uid %></td>
+              <% end %>
               <td><%= user.first_name %></td>
               <td><%= user.last_name %></td>
               <td><% roles = @presenter.user_roles(user) %>
