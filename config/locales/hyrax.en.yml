@@ -56,3 +56,8 @@ en:
     institution_name_full: The Institution Name
     product_name: Hyrax
     product_twitter_handle: "@SamveraRepo"
+    admin:
+      users:
+        index:
+          first_name_label: First name
+          last_name_label: Last name
