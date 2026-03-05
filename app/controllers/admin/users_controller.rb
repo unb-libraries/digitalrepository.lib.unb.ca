@@ -5,5 +5,8 @@ class Admin::UsersController < Hyrax::Admin::UsersController
   end
 
   def new
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
+    add_breadcrumb t(:'hyrax.admin.users.index.title'), admin_users_path
   end
 end
