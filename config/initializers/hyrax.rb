@@ -173,10 +173,10 @@ Hyrax.config do |config|
   # The banner image. Should be 5000px wide by 1000px tall
   # config.banner_image = 'https://cloud.githubusercontent.com/assets/92044/18370978/88ecac20-75f6-11e6-8399-6536640ef695.jpg'
 
-   # Temporary paths to hold uploads before they are ingested into FCrepo
-   # These must be lambdas that return a Pathname. Can be configured separately
-   config.upload_path = ->() { Rails.configuration.x.hyrax.upload_path } unless !Rails.configuration.x.hyrax.upload_path
-   config.cache_path = ->() { Rails.configuration.x.hyrax.cache_path } unless !Rails.configuration.x.hyrax.cache_path
+  # Temporary paths to hold uploads before they are ingested into FCrepo
+  # These must be lambdas that return a Pathname. Can be configured separately
+  #  config.upload_path = ->() { Rails.root + "tmp" + "uploads" }
+  #  config.cache_path = ->() { Rails.root + "tmp" + "uploads" + "cache" }
 
   # The registered candidate derivative services.  In the array, the first `valid?` candidate will
   # handle the derivative generation.
@@ -184,7 +184,7 @@ Hyrax.config do |config|
 
   # Location on local file system where derivatives will be stored
   # If you use a multi-server architecture, this MUST be a shared volume
-  config.derivatives_path = Rails.configuration.x.hyrax.derivatives_path unless !Rails.configuration.x.hyrax.derivatives_path
+  # config.derivatives_path = Rails.root.join("tmp", "derivatives")
 
   # Should schema.org microdata be displayed?
   # config.display_microdata = true
@@ -196,7 +196,7 @@ Hyrax.config do |config|
   # Location on local file system where uploaded files will be staged
   # prior to being ingested into the repository or having derivatives generated.
   # If you use a multi-server architecture, this MUST be a shared volume.
-  config.working_path = Rails.configuration.x.hyrax.working_path unless !Rails.configuration.x.hyrax.working_path
+  # config.working_path = Rails.root.join("tmp", "uploads")
 
   # Should the media display partial render a download link?
   # config.display_media_download_link = true

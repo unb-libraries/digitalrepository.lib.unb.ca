@@ -104,8 +104,12 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   # Custom configuration for Hyrax
-  config.x.hyrax.upload_path = Rails.root.join("storage", "tmp", "uploads")
-  config.x.hyrax.cache_path = Rails.root.join("storage", "tmp", "cache")
-  config.x.hyrax.derivatives_path = Rails.root.join("storage", "derivatives")
-  config.x.hyrax.working_path = Rails.root.join("storage", "tmp", "uploads")
+  config.before_initialize do
+    Hyrax.config do |hc|
+      hc.upload_path = ->() { Rails.root.join("storage", "tmp", "uploads") }
+      hc.cache_path = ->() { Rails.root.join("storage", "tmp", "cache") }
+      hc.derivatives_path = Rails.root.join("storage", "derivatives")
+      hc.working_path = Rails.root.join("storage", "tmp", "uploads")
+    end
+  end
 end
