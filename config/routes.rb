@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users, only: [ :index, :new, :create ]
+  end
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
         mount BrowseEverything::Engine => '/browse'
   mount Blacklight::Engine => '/'
@@ -8,7 +11,11 @@ Rails.application.routes.draw do
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
   end
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_scope :user do
+    get "sign_out", to: "devise/sessions#destroy", as: :destroy_user_session
+  end
+
   mount Hydra::RoleManagement::Engine => '/'
 
   require "sidekiq/web"

@@ -22,6 +22,11 @@ gem "jbuilder"
 # Role management
 gem "hydra-role-management"
 
+# User authentication (SAML)
+gem "omniauth", "~> 2.1"
+gem "omniauth-saml", "~> 2.2"
+gem "omniauth-rails_csrf_protection", "~> 2.0"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

@@ -84,6 +84,18 @@ services:
     networks:
       - digitalrepository.lib.unb.ca
 
+  digitalrepository-idp-lib-unb-ca:
+    image: ghcr.io/unb-libraries/simplesamlphp:1.x
+    container_name: digitalrepository-idp-lib-unb-ca
+    restart: unless-stopped
+    env_file:
+      - ./env/saml.env
+    networks:
+      - digitalrepository.lib.unb.ca
+    ports:
+      - 6080:8080
+      - 60800:8443
+
 networks:
   digitalrepository.lib.unb.ca:
     name: digitalrepository.lib.unb.ca

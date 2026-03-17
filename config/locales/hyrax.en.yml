@@ -1,5 +1,12 @@
 ---
 en:
+  admin:
+    users:
+      index:
+        id_label: User ID
+        first_name_label: First name
+        last_name_label: Last name
+        role_label: Roles
   blacklight:
     search:
       fields:
