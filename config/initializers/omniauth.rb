@@ -1,3 +1,5 @@
+# Available options
+# https://github.com/omniauth/omniauth-saml?tab=readme-ov-file#options
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :saml,
     attribute_service_name: ENV.fetch("SAML_SP_SERVICE_NAME", "Digital Repository"),
@@ -6,5 +8,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     idp_sso_service_url: ENV["SAML_IDP_SSO_SERVICE_URL"],
     slo_enabled: false,
     idp_cert: ENV["SAML_IDP_CERT"],
-    name_identifier_format: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+    name_identifier_format: "urn:oasis:names:tc:SAML:2.0:attrname-format:uri"
   end
