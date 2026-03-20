@@ -8,5 +8,11 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     idp_sso_service_url: ENV["SAML_IDP_SSO_SERVICE_URL"],
     slo_enabled: false,
     idp_cert: ENV["SAML_IDP_CERT"],
-    name_identifier_format: "urn:oasis:names:tc:SAML:2.0:attrname-format:uri"
+    name_identifier_format: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+    request_attributes: [
+      { name: "eduPersonPrincipalName", name_format: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress", friendly_name: "ID", is_required: true },
+      { name: "givenName", name_format: "urn:oasis:names:tc:SAML:2.0:attrname-format:basic", friendly_name: "First Name" },
+      { name: "sn", name_format: "urn:oasis:names:tc:SAML:2.0:attrname-format:basic", friendly_name: "Last Name" },
+      { name: "mail", name_format: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress", friendly_name: "Email" }
+    ]
   end

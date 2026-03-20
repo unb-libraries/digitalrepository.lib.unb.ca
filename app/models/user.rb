@@ -30,9 +30,6 @@ class User < ApplicationRecord
       user.first_name = provider_info["givenName"][0]
       user.last_name = provider_info["sn"][0]
       user.display_name = "#{user.first_name} #{user.last_name}"
-      user.department = provider_info["l"][0]
-      user.title = provider_info["title"][0]
-      user.telephone = provider_info["telephoneNumber"][0]
       user.save
     end
     user
