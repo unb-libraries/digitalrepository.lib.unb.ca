@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/unb-libraries/hyrax
-  revision: 951e4a83c33e33ae7851c46a39928896a6e0f726
-  tag: hyrax-v5.2.1
+  revision: ce437ff2184f297e8f0b26b93cdf7f1cd7a3d234
+  tag: hyrax-v5.2.2
   specs:
     hyrax (5.2.0)
       active-fedora (~> 15.0)

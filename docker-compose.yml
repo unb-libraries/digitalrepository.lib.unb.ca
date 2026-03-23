@@ -22,7 +22,6 @@ services:
       - ./db:/rails/db
       - storage:/rails/storage
       - ./test:/rails/test
-      - working:/rails/tmp
     networks:
       - digitalrepository.lib.unb.ca
 
@@ -103,5 +102,4 @@ networks:
 volumes:
   db:
   storage:
-  working:
   
