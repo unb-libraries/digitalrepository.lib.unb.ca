@@ -6,7 +6,13 @@ namespace :roles do
 
     roles = map[Rails.env] || {}
     roles.each do |role_name, users|
-      Role.find_or_create_by(name: role_name)
+      r = Role.find_or_create_by(name: role_name)
+      unless Rails.env.production?
+        users.each do |uid|
+          u = User.find_or_create_by(uid: uid, provider: "saml")
+          u.roles << r unless u.roles.include?(r)
+        end
+      end
     end
   end
 end
