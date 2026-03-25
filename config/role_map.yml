@@ -1,25 +1,10 @@
 # Local development and testing only.
 # https://github.com/samvera/hyrax/wiki/Setting-up-test-app-for-workflow
 development:
-  archivist:
-    - archivist1@example.com
+  admin:
+    - j.doe@unb.ca
 
 test:
-  archivist:
-    - archivist1@example.com
-    - archivist2@example.com
-    - leland_himself@example.com
-  admin_policy_object_editor:
-    - archivist1@example.com
-  donor:
-    - donor1@example.com
-    - leland_himself@example.com
-  researcher:
-    - archivist1@example.com
-    - researcher1@example.com
-  patron:
-    - patron1@example.com
-    - leland_himself@example.com
 
 production:
   # Add a production admin user:
