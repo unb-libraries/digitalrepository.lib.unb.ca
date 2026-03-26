@@ -143,7 +143,6 @@ attributes:
       html_dl: true
   language:
     type: string
-    multiple: true
     form:
       primary: true
     index_keys:
