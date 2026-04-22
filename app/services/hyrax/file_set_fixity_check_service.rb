@@ -72,8 +72,7 @@ module Hyrax
       versions = Hyrax.storage_adapter.find_versions(id: file.id)
       versions = [ versions.max_by(&:created) ] if latest_version_only
       versions.collect do |v|
-        uri = "/files/#{v.id.id}"
-        fixity_check_file_version(file.id, uri)
+        fixity_check_file_version(file.id, file.id)
       end
     end
 
