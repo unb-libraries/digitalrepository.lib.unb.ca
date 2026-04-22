@@ -765,6 +765,7 @@ GEM
     pg (1.6.3-x86_64-darwin)
     pg (1.6.3-x86_64-linux)
     pg (1.6.3-x86_64-linux-musl)
+    philiprehberger-checksum (0.8.0)
     popper_js (1.16.1)
     pp (0.6.3)
       prettyprint
@@ -1222,6 +1223,7 @@ DEPENDENCIES
   omniauth-saml (~> 2.2)
   openseadragon (>= 0.2.0)
   pg (~> 1.1)
+  philiprehberger-checksum (~> 0.8.0)
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
   riiif (~> 2.1)

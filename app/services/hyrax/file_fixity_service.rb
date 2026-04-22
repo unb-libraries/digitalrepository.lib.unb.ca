@@ -1,10 +1,13 @@
+require "philiprehberger/checksum"
+
 module Hyrax
   class FileFixityService
     extend ActiveSupport::Concern
 
     def create_checksum(file_id)
       # TODO: implement real checksum creation
-      "89d97604b7bd2889826c2791af076b04"
+      file = Hyrax.storage_adapter.find_by(id: file_id)
+      Philiprehberger::Checksum.file_md5(file.io.path)
     end
   end
 end

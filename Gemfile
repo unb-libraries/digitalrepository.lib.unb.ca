@@ -90,3 +90,5 @@ group :development, :test do
 end
 
 gem "sidekiq", "~> 7.3"
+
+gem "philiprehberger-checksum", "~> 0.8.0"
