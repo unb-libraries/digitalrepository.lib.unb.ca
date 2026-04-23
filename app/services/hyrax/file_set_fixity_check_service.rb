@@ -58,7 +58,6 @@ module Hyrax
     # If async_jobs is true (default), just returns nil, stuff is still going on.
     def fixity_check
       file_metadata = Hyrax::FileSetFileService.new(file_set: file_set).primary_file
-      Hyrax.logger.info "Fixity checking file #{file_metadata.file_identifier} in FileSet #{file_set.id}"
       file = Hyrax.storage_adapter.find_by(id: file_metadata.file_identifier)
       fixity_check_file(file)
     end
@@ -72,7 +71,8 @@ module Hyrax
       versions = Hyrax.storage_adapter.find_versions(id: file.id)
       versions = [ versions.max_by(&:created) ] if latest_version_only
       versions.collect do |v|
-        fixity_check_file_version(file.id, file.id)
+        Hyrax.logger.info "Fixity checking version #{v.id}"
+        fixity_check_file_version(file.id.to_s, v.id.to_s)
       end
     end
 
