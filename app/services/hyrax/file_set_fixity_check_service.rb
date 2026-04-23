@@ -84,9 +84,9 @@ module Hyrax
       return latest_fixity_check unless needs_fixity_check?(latest_fixity_check)
 
       if async_jobs
-        Hyrax::FixityCheckJob.perform_later(version_uri.to_s, file_set_id: file_set.id, file_id: file_id)
+        Hyrax::FixityCheckJob.perform_later(version_uri.to_s, file_set_id: file_set.id.to_s, file_id: file_id)
       else
-        Hyrax::FixityCheckJob.perform_now(version_uri.to_s, file_set_id: file_set.id, file_id: file_id)
+        Hyrax::FixityCheckJob.perform_now(version_uri.to_s, file_set_id: file_set.id.to_s, file_id: file_id)
       end
     end
 
