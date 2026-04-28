@@ -1,0 +1,6 @@
+fixity_check:
+  name: "Fixity check"
+  description: Perform fixity checks on each file set's primary file versions.
+  cron: "0/15 * * * *"
+  class: "Sidekiq::Cron::FixityCheckJob"
+  queue: fixity
